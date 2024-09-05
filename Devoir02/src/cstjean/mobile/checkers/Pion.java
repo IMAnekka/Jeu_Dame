@@ -13,6 +13,7 @@ public class Pion {
         this("Blanc");
     }
 
+    // Méthode pour obtenir la couleur du pion
     public String getCouleur() {
         return couleur;
     }
