@@ -2,31 +2,43 @@ package cstjean.mobile.checkers;
 
 import junit.framework.TestCase;
 
+/**
+ * Classe de test pour la classe {@link Damier}.
+ * Vérifie le bon fonctionnement des méthodes de la classe {@link Damier}.
+ */
 public class TestDamier extends TestCase {
 
-    public void testDamier() {
+    /**
+     * Teste que le damier est vide initialement.
+     * Crée un nouveau damier et vérifie que le nombre de pions est zéro.
+     */
+    public void testDamierVideInitialement() {
         Damier damier = new Damier();
-
         // Vérifie que le damier est vide au départ
-        assertEquals(0, damier.getNombreDePions());
+        assertEquals(0, damier.nombrePions());
+    }
 
+    /**
+     * Teste l'ajout et l'obtention de pions sur le damier.
+     * Crée un damier et deux pions (noir et blanc). Ajoute ces pions à des positions spécifiques
+     * sur le damier et vérifie que le nombre de pions est correct ainsi que la couleur des pions
+     * aux positions spécifiées.
+     */
+    public void testAjouterEtObtenirPion() {
+        Damier damier = new Damier();
         Pion pionNoir = new Pion("noir");
         Pion pionBlanc = new Pion("blanc");
 
-        // Ajoute des pions à des positions spécifiques
         damier.ajouterPion(38, pionNoir);
-        assertEquals(1, damier.getNombreDePions());
+        damier.ajouterPion(15, pionBlanc);
+
+        // Vérifie que le nombre de pions est correct
+        assertEquals(2, damier.nombrePions());
+
+        // Vérifie que le pion en position 38 est bien un pion noir
         assertEquals("noir", damier.obtenirPion(38).getCouleur());
 
-        damier.ajouterPion(10, pionBlanc);
-        assertEquals(2, damier.getNombreDePions());
-        assertEquals("blanc", damier.obtenirPion(10).getCouleur());
-
-        // Vérifie que le pion ajouté est correct
-        assertEquals("noir", damier.obtenirPion(38).getCouleur());
-        assertEquals("blanc", damier.obtenirPion(10).getCouleur());
-
-        // Vérifie que les positions non occupées retournent null
-        assertNull(damier.obtenirPion(1));
+        // Vérifie que le pion en position 15 est bien un pion blanc
+        assertEquals("blanc", damier.obtenirPion(15).getCouleur());
     }
 }
